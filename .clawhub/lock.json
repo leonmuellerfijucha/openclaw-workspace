@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "api-gateway": {
+      "version": "1.0.124",
+      "installedAt": 1780423538850,
+      "registry": "https://clawhub.ai"
+    },
+    "buffer-api": {
+      "version": "1.0.1",
+      "installedAt": 1780423550982,
+      "registry": "https://clawhub.ai"
+    },
+    "remotion": {
+      "version": "1.0.1",
+      "installedAt": 1780423564791,
+      "registry": "https://clawhub.ai"
+    }
+  }
+}
