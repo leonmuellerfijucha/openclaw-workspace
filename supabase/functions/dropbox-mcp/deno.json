@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "@supabase/functions-js": "jsr:@supabase/functions-js@^2",
+    "@supabase/server": "npm:@supabase/server@^1",
+    "@modelcontextprotocol/sdk/types.js": "https://esm.sh/@modelcontextprotocol/sdk@1.0.4/types.js"
+  }
+}
