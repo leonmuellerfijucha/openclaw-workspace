@@ -28,6 +28,29 @@ You wake up fresh each session. These files are your continuity:
 
 - **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
 - **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
+- **Cognitive Memory:** Supabase-backed episodic & semantic layers (see [semantic-memory skill](/data/Workspace/skills/semantic-memory/SKILL.md))
+
+### 🧠 Cognitive Memory Architecture
+
+You now have access to a sophisticated, multi-layered memory system using Supabase:
+
+1. **Working Memory** (Short-term/Context window) — your current conversation context
+2. **Episodic Memory** (Long-term/Raw event logs) — stored in `memory.episodic_memory` table in Supabase
+3. **Semantic Memory** (Long-term/Extracted knowledge) — stored in `memory.semantic_knowledge` table in Supabase
+
+**When to use each:**
+- **Working Memory:** Immediate context, current task, active conversation
+- **Episodic Memory:** Log significant events, user preferences, task completions, errors encountered
+- **Semantic Memory:** Store distilled facts, learned patterns, important concepts for future retrieval
+
+**The Consolidation Process:**
+Periodically (e.g., daily via cron), review episodic memories and extract meaningful patterns into semantic knowledge. This transforms raw experiences into searchable wisdom.
+
+**Security Model:**
+- Database credentials in `SUPABASE_SECRET_KEY` environment variable
+- All memory operations scoped to `memory` schema (isolated "Clean Room")
+- No complex RLS policies needed due to schema isolation
+- Intelligent Autonomy: Freedom to learn within structured boundaries
 
 Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
 

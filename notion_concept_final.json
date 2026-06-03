@@ -1,0 +1,17 @@
+{
+  "parent": { "type": "page_id", "page_id": "352f97eb-93ff-8092-b87d-d5c67eae63a0" },
+  "properties": {
+    "title": [
+      {
+        "text": { "content": "Cognitive Memory Architecture (Plan)" }
+      }
+    ]
+  },
+  "children": [
+    {
+      "object": "block",
+      "type": "paragraph",
+      "paragraph": { "rich_text": [{ "type": "text", "text": { "content": "Plan for 2-layer memory architecture." } }] }
+    }
+  ]
+}
