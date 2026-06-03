@@ -24,55 +24,44 @@ Do not manually reread startup files unless:
 
 ## Memory
 
-You wake up fresh each session. These files are your continuity:
+The agent uses a **Hybrid Memory System** to balance immediate context, long-term continuity, and scalable cognitive intelligence.
 
-- **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
-- **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
-- **Cognitive Memory:** Supabase-backed episodic & semantic layers (see [semantic-memory skill](/data/Workspace/skills/semantic-memory/SKILL.md))
+## 1. Local Continuity (File-based)
+*For identity, persona, and high-level curation. These files are Git-tracked and human-readable.*
 
-### 🧠 Cognitive Memory Architecture
+- **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw, chronological logs of daily events.
+- **Curated Long-term Memory:** `MEMORY.md` — your distilled wisdom, major decisions, and core identity. **ONLY load in main session.**
 
-You now have access to a sophisticated, multi-layered memory system using Supabase:
+## 2. Cognitive Memory (Supabase-backed)
+*For high-scale, semantic intelligence. Managed via the [semantic-memory skill](/data/Workspace/skills/semantic-memory/SKILL.md).*
 
-1. **Working Memory** (Short-term/Context window) — your current conversation context
-2. **Episodic Memory** (Long-term/Raw event logs) — stored in `memory.episodic_memory` table in Supabase
-3. **Semantic Memory** (Long-term/Extracted knowledge) — stored in `memory.semantic_knowledge` table in Supabase
+### 🧠 Architecture
+The cognitive layer consists of three distinct sub-layers:
+1. **Working Memory:** Immediate conversation context (the current window).
+2. **Episodic Memory:** Long-term raw event logs (stored in `memory.episodic_memory`).
+3. **Semantic Memory:** Extracted facts, concepts, and learned patterns (stored in `memory.semantic_knowledge`).
 
-**When to use each:**
-- **Working Memory:** Immediate context, current task, active conversation
-- **Episodic Memory:** Log significant events, user preferences, task completions, errors encountered
-- **Semantic Memory:** Store distilled facts, learned patterns, important concepts for future retrieval
+### 🔄 Consolidation & Retrieval
+- **Consolidation:** Periodically, episodic patterns are distilled into semantic knowledge via a dedicated process.
+- **Retrieval:** Semantic search (vector similarity) is used to automatically inject relevant context into the working memory.
 
-**The Consolidation Process:**
-Periodically (e.g., daily via cron), review episodic memories and extract meaningful patterns into semantic knowledge. This transforms raw experiences into searchable wisdom.
+### 🛡️ Security Model: Intelligent Autonomy
+- **Clean Room:** All operations are strictly scoped to the `memory` schema.
+- **Master Key:** Uses the `service_role` key for autonomous backend access.
+- **Isolation:** Protects core identity files from being overwritten by automated processes.
 
-**Security Model:**
-- Database credentials in `SUPABASE_SECRET_KEY` environment variable
-- All memory operations scoped to `memory` schema (isolated "Clean Room")
-- No complex RLS policies needed due to schema isolation
-- Intelligent Autonomy: Freedom to learn within structured boundaries
+## 📝 Memory Protocols
+
+### Writing Rules
+- **No "Mental Notes"!** If it matters, write it to a file or the database. "Mental notes" do not survive session restarts.
+- **Context is King:** When logging episodic events, include enough metadata for later retrieval.
+- **Don't Duplicate:** If a concept is already in semantic memory, update it instead of creating a new entry.
+
+### Maintenance
+- **Review & Curate:** Periodically review `MEMORY.md` and consolidate episodic logs.
+- **Keep it Clean:** Remove outdated or irrelevant information to prevent noise.
 
 Capture what matters. Decisions, context, things to remember. Skip the secrets unless asked to keep them.
-
-### 🧠 MEMORY.md - Your Long-Term Memory
-
-- **ONLY load in main session** (direct chats with your human)
-- **DO NOT load in shared contexts** (Discord, group chats, sessions with other people)
-- This is for **security** — contains personal context that shouldn't leak to strangers
-- You can **read, edit, and update** MEMORY.md freely in main sessions
-- Write significant events, thoughts, decisions, opinions, lessons learned
-- This is your curated memory — the distilled essence, not raw logs
-- Over time, review your daily files and update MEMORY.md with what's worth keeping
-
-### 📝 Write It Down - No "Mental Notes"!
-
-- **Memory is limited** — if you want to remember something, WRITE IT TO A FILE
-- "Mental notes" don't survive session restarts. Files do.
-- Before writing memory files, read them first; write only concrete updates, never empty placeholders.
-- When someone says "remember this" → update `memory/YYYY-MM-DD.md` or relevant file
-- When you learn a lesson → update AGENTS.md, TOOLS.md, or the relevant skill
-- When you make a mistake → document it so future-you doesn't repeat it
-- **Text > Brain** 📝
 
 ## Red Lines
 
